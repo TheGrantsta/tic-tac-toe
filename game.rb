@@ -6,7 +6,7 @@ class Game
   end
 
   def available_squares
-    "Please select available square: #{@grid.join(", ")}"
+    "Please select available square: #{@grid.filter{ |o| o.is_a? Integer }.join(", ") }"
   end
 
   def add_player_choice player_choice
@@ -18,7 +18,8 @@ class Game
   end
 
   private
+
   def add_choice square, mark
-    @grid[square] = mark
+    @grid[square - 1] = mark
   end
 end
