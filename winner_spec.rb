@@ -32,7 +32,7 @@ RSpec.describe Winner do
 
   describe "not winning combinationss" do
     before do
-      @grid = ["", "", "", "", "", "", "", "", "", ""]
+      @grid = Array.new(9, "")
     end
     it "should return false for top row" do
       @grid[0] = "X"; @grid[1] = "X"; @grid[2] = "O"
