@@ -16,8 +16,10 @@ class Game
   end
 
   def add_player_choice player_choice
-    add_choice player_choice, "X"
-    @turn = "Computer"
+    if is_square_available player_choice
+      add_choice player_choice, "X"
+      @turn = "Computer"
+    end
     @is_playing = @grid.filter{ |o| o.is_a? Integer }.size > 0
   end
 
@@ -29,7 +31,11 @@ class Game
 
   private
 
-  def add_choice square, mark
-    @grid[square - 1] = mark unless @grid[square - 1] == "O"
+  def is_square_available choice
+    @grid[choice - 1] != "X" && @grid[choice - 1] != "O"
+  end
+
+  def add_choice choice, mark
+    @grid[choice - 1] = mark unless @grid[choice - 1] == "O"
   end
 end

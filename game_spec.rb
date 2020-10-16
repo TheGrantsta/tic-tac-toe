@@ -46,6 +46,7 @@ RSpec.describe Game do
       @game.add_player_choice 1
 
       expect(@game.grid[0]).to eq "O"
+      expect(@game.turn).to eq "Player"
     end
 
     it "should return list of available squares - after setup" do
