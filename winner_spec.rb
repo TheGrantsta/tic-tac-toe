@@ -44,6 +44,14 @@ RSpec.describe Winner do
 
       expect(winner.is_win).to be_truthy
     end
+
+    it "should return true for third colum" do
+      @grid[2] = "X"; @grid[5] = "X"; @grid[8] = "X"
+
+      winner = Winner.new @grid
+
+      expect(winner.is_win).to be_truthy
+    end
   end
 
   describe "not winning combinationss" do
@@ -84,6 +92,14 @@ RSpec.describe Winner do
 
     it "should return false for second colum" do
       @grid[1] = "X"; @grid[4] = "O"; @grid[7] = "X"
+
+      winner = Winner.new @grid
+
+      expect(winner.is_win).to be_falsey
+    end
+
+    it "should return false for third colum" do
+      @grid[2] = "X"; @grid[5] = "X"; @grid[8] = "O"
 
       winner = Winner.new @grid
 
