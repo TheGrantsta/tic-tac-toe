@@ -5,6 +5,10 @@ class Game
     @grid = starting_gird
   end
 
+  def display_grid
+    "Grid: #{@grid.join(", ")}"
+  end
+
   def available_squares
     "Please select available square: #{@grid.filter{ |o| o.is_a? Integer }.join(", ") }"
   end
@@ -20,6 +24,6 @@ class Game
   private
 
   def add_choice square, mark
-    @grid[square - 1] = mark
+    @grid[square - 1] = mark unless @grid[square - 1] == "O"
   end
 end

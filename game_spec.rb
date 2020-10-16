@@ -29,6 +29,13 @@ RSpec.describe Game do
       expect(@game.grid[0]).to eq "O"
     end
 
+    it "should not allow player to select square already taken" do
+      @game.add_computer_choice 1
+      @game.add_player_choice 1
+
+      expect(@game.grid[0]).to eq "O"
+    end
+
     it "should return list of available squares - after setup" do
       expect(@game.available_squares).to eq "Please select available square: 1, 2, 3, 4, 5, 6, 7, 8, 9"
     end
@@ -46,6 +53,14 @@ RSpec.describe Game do
       @game.add_player_choice 7; @game.add_player_choice 8; @game.add_player_choice 9;
 
       expect(@game.available_squares).to eq "Please select available square: "
+    end
+
+    it "should display state of the game after three moves" do
+      @game.add_player_choice 2
+      @game.add_computer_choice 6
+      @game.add_player_choice 3
+
+      expect(@game.display_grid).to eq "Grid: 1, X, X, 4, 5, O, 7, 8, 9"
     end
   end
 end
