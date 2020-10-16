@@ -10,6 +10,8 @@ class Winner
       true
     elsif is_middle_row
       true
+    elsif is_bottom_row
+      true
     else
       false
     end
@@ -22,5 +24,9 @@ class Winner
 
     def is_middle_row
       @combinations.slice(3, 3).join("-") == WINNING_COMBINATION
+    end
+
+    def is_bottom_row
+      @combinations.slice(6, 3).join("-") == WINNING_COMBINATION
     end
 end
