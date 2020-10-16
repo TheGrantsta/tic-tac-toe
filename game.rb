@@ -1,9 +1,10 @@
 class Game
-  attr_reader :grid, :is_playing
+  attr_reader :grid, :is_playing, :turn
 
   def initialize starting_gird
     @grid = starting_gird
     @is_playing = true
+    @turn = "Player"
   end
 
   def display_grid
@@ -16,11 +17,13 @@ class Game
 
   def add_player_choice player_choice
     add_choice player_choice, "X"
+    @turn = "Computer"
     @is_playing = @grid.filter{ |o| o.is_a? Integer }.size > 0
   end
 
   def add_computer_choice computer_choice
     add_choice computer_choice, "O"
+    @turn = "Player"
     @is_playing = @grid.filter{ |o| o.is_a? Integer }.size > 0
   end
 
