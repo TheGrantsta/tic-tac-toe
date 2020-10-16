@@ -19,8 +19,10 @@ class Game
     if is_square_available player_choice
       add_choice player_choice, "X"
       @turn = "Computer"
+      @is_playing = @grid.filter{ |o| o.is_a? Integer }.size > 0
+      add_computer_choice @grid.filter{|o| o.is_a? Integer}.first if @is_playing
     end
-    @is_playing = @grid.filter{ |o| o.is_a? Integer }.size > 0
+
   end
 
   def add_computer_choice computer_choice

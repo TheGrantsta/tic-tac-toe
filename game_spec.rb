@@ -25,7 +25,7 @@ RSpec.describe Game do
       @game.add_player_choice 1
 
       expect(@game.grid[0]).to eq "X"
-      expect(@game.turn).to eq "Computer"
+      expect(@game.turn).to eq "Player"
     end
 
     it "allow computer to select square by number" do
@@ -55,16 +55,14 @@ RSpec.describe Game do
 
     it "should return list of available squares - after two moves" do
       @game.add_player_choice 2
-      @game.add_computer_choice 6
 
-      expect(@game.available_squares).to eq "Please select available square: 1, 3, 4, 5, 7, 8, 9"
+      expect(@game.available_squares).to eq "Please select available square: 3, 4, 5, 6, 7, 8, 9"
       expect(@game.is_playing).to be_truthy
     end
 
-    it "should return list of available squares - after two moves" do
-      @game.add_player_choice 1; @game.add_player_choice 2; @game.add_player_choice 3;
-      @game.add_player_choice 4; @game.add_player_choice 5; @game.add_player_choice 6;
-      @game.add_player_choice 7; @game.add_player_choice 8; @game.add_player_choice 9;
+    it "should return empty list of available squares - after five moves" do
+      @game.add_player_choice 1; @game.add_player_choice 3;
+      @game.add_player_choice 5; @game.add_player_choice 7; @game.add_player_choice 9;
 
       expect(@game.available_squares).to eq "Please select available square: "
       expect(@game.is_playing).to be_falsey
@@ -72,10 +70,9 @@ RSpec.describe Game do
 
     it "should display state of the game after three moves" do
       @game.add_player_choice 2
-      @game.add_computer_choice 6
       @game.add_player_choice 3
 
-      expect(@game.display_grid).to eq "Grid: 1, X, X, 4, 5, O, 7, 8, 9"
+      expect(@game.display_grid).to eq "Grid: O, X, X, O, 5, 6, 7, 8, 9"
     end
   end
 end
