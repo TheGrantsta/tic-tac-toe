@@ -17,15 +17,10 @@ RSpec.describe Game do
       expect(@game.grid[8]).to eq 9
     end
 
-    it "should setup the game with the player's turn" do
-      expect(@game.turn).to eq "Player"
-    end
-
     it "allow player to select square by number" do
       @game.add_player_choice 1
 
       expect(@game.grid[0]).to eq "X"
-      expect(@game.turn).to eq "Player"
     end
 
     it "allow computer to select square by number" do
@@ -34,19 +29,11 @@ RSpec.describe Game do
       expect(@game.grid[0]).to eq "O"
     end
 
-    it "should alternate between player to computer to player" do
-      @game.add_player_choice 1
-      @game.add_computer_choice 2
-
-      expect(@game.turn).to eq "Player"
-    end
-
     it "should not allow player to select square already taken" do
       @game.add_computer_choice 1
       @game.add_player_choice 1
 
       expect(@game.grid[0]).to eq "O"
-      expect(@game.turn).to eq "Player"
     end
 
     it "should return list of available squares - after setup" do
