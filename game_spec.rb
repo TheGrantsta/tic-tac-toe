@@ -45,6 +45,7 @@ RSpec.describe Game do
       @game.add_computer_choice 6
 
       expect(@game.available_squares).to eq "Please select available square: 1, 3, 4, 5, 7, 8, 9"
+      expect(@game.is_playing).to be_truthy
     end
 
     it "should return list of available squares - after two moves" do
@@ -53,6 +54,7 @@ RSpec.describe Game do
       @game.add_player_choice 7; @game.add_player_choice 8; @game.add_player_choice 9;
 
       expect(@game.available_squares).to eq "Please select available square: "
+      expect(@game.is_playing).to be_falsey
     end
 
     it "should display state of the game after three moves" do
