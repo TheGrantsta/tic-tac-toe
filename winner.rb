@@ -10,7 +10,8 @@ class Winner
 
     array_of_checkers = [
       method(:is_top_row_match), method(:is_middle_row_match), method(:is_bottom_row_match),
-      method(:is_first_column_match), method(:is_second_column_match), method(:is_third_column_match)
+      method(:is_first_column_match), method(:is_second_column_match), method(:is_third_column_match),
+      method(:is_diagonal_match)
     ]
 
     array_of_checkers.each do |checker|
@@ -45,5 +46,9 @@ class Winner
 
     def is_third_column_match
       "#{@combinations[2]}-#{@combinations[5]}-#{@combinations[8]}" == WINNING_COMBINATION
+    end
+
+    def is_diagonal_match
+      "#{@combinations[0]}-#{@combinations[4]}-#{@combinations[8]}" == WINNING_COMBINATION
     end
 end
