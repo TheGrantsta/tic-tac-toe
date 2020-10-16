@@ -35,7 +35,7 @@ class Winner
 
     def is_diagonal_match
       [0,2].each do |c|
-        if is_match("#{@combinations[(8 - c).abs]}-#{@combinations[4]}-#{@combinations[c]}")
+        if is_match("#{@combinations[8 - c]}-#{@combinations[4]}-#{@combinations[c]}")
           return true
         end
       end
