@@ -5,6 +5,10 @@ class Game
     @grid = starting_gird
   end
 
+  def available_squares
+    "Please select available square: #{@grid.join(", ")}"
+  end
+
   def add_player_choice player_choice
     add_choice player_choice, "X"
   end

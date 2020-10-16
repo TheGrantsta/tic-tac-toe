@@ -2,8 +2,7 @@ require_relative "game"
 
 RSpec.describe Game do
   describe "support player inputting an option" do
-    before (:all) do
-      cnt = 0
+    before do
       @grid = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
       @game = Game.new @grid
@@ -34,6 +33,10 @@ RSpec.describe Game do
       @game.add_computer_choice computer_choice
 
       expect(@game.grid[computer_choice]).to eq "O"
+    end
+
+    it "should return list of available squares - after setup" do
+      expect(@game.available_squares).to eq "Please select available square: 1, 2, 3, 4, 5, 6, 7, 8, 9"
     end
   end
 end
