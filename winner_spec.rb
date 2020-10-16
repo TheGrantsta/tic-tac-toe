@@ -60,6 +60,14 @@ RSpec.describe Winner do
 
       expect(winner.is_win).to be_truthy
     end
+
+    it "should return true for right to left diagonal" do
+      @grid[2] = "X"; @grid[4] = "X"; @grid[6] = "X"
+
+      winner = Winner.new @grid
+
+      expect(winner.is_win).to be_truthy
+    end
   end
 
   describe "not winning combinationss" do
@@ -116,6 +124,14 @@ RSpec.describe Winner do
 
     it "should return false for left to right diagonal" do
       @grid[0] = "X"; @grid[4] = "O"; @grid[8] = "X"
+
+      winner = Winner.new @grid
+
+      expect(winner.is_win).to be_falsey
+    end
+
+    it "should return false for right to left diagonal" do
+      @grid[2] = "X"; @grid[4] = "O"; @grid[6] = "X"
 
       winner = Winner.new @grid
 

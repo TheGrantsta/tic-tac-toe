@@ -49,6 +49,9 @@ class Winner
     end
 
     def is_diagonal_match
-      "#{@combinations[0]}-#{@combinations[4]}-#{@combinations[8]}" == WINNING_COMBINATION
+      left_to_right = "#{@combinations[0]}-#{@combinations[4]}-#{@combinations[8]}"
+      right_to_left = "#{@combinations[2]}-#{@combinations[4]}-#{@combinations[6]}"
+
+      left_to_right == WINNING_COMBINATION || right_to_left == WINNING_COMBINATION
     end
 end
