@@ -15,6 +15,16 @@ class Winner
     false
   end
 
+  def is_computer_win
+    @winning_combination = "O-O-O"
+    @methods.each do |checker|
+      if checker.call
+        return true
+      end
+    end
+    false
+  end
+
   private
     def is_across_match
       [0,3,6].each do |c|

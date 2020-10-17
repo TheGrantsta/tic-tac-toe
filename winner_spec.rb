@@ -138,4 +138,26 @@ RSpec.describe Winner do
       expect(winner.is_player_win).to be_falsey
     end
   end
+
+  describe "computer playing" do
+    before do
+      @grid = Array.new(9, "")
+    end
+
+    it "should return true for top row" do
+      @grid[0] = "O"; @grid[1] = "O"; @grid[2] = "O"
+
+      winner = Winner.new @grid
+
+      expect(winner.is_computer_win).to be_truthy
+    end
+
+    it "should return false for top row" do
+      @grid[0] = "O"; @grid[1] = ""; @grid[2] = "O"
+
+      winner = Winner.new @grid
+
+      expect(winner.is_computer_win).to be_falsey
+    end
+  end
 end
