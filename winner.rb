@@ -1,6 +1,7 @@
 class Winner
   def initialize combinations
     @combinations = combinations
+    @winning_combination = "X-X-X"
   end
 
   def is_player_win
@@ -41,6 +42,6 @@ class Winner
     end
 
     def is_match input
-      input == "X-X-X"
+      input == @winning_combination
     end
 end
