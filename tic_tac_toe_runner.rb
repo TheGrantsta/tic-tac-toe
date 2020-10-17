@@ -4,6 +4,7 @@ require_relative "game"
 
 while @game.is_playing do
   puts "*************************"
+  puts
   puts @game.display_grid
   puts
   puts @game.available_squares
@@ -16,4 +17,9 @@ while @game.is_playing do
 end
 
 puts
+puts @game.display_grid
+puts
 puts "Result: #{@game.display_result}"
+puts
+puts "*************************"
+puts
