@@ -25,7 +25,9 @@ class Game
   end
 
   def add_computer_choice computer_choice
-    add_choice computer_choice, "O"
+    if computer_choice.is_a? Integer
+      add_choice computer_choice, "O"
+    end
   end
 
   def display_result
