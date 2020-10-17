@@ -1,11 +1,13 @@
 class Winner
+
   def initialize combinations
     @combinations = combinations
     @winning_combination = "X-X-X"
+    @methods = [method(:is_across_match), method(:is_down_match), method(:is_diagonal_match)]
   end
 
   def is_player_win
-    [method(:is_across_match), method(:is_down_match), method(:is_diagonal_match)].each do |checker|
+    @methods.each do |checker|
       if checker.call
         return true
       end
