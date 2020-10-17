@@ -1,6 +1,6 @@
 class Strategy
   def self.move combinations
-    if combinations[4] == 5
+    if combinations.include?(5)
       5
     else
       1
