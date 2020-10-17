@@ -9,7 +9,7 @@ class Game
   end
 
   def display_grid
-    "Grid: #{@grid.join(", ")}"
+    "\n#{@grid.slice(0, 3).join(" | ")}\n#{@grid.slice(3, 3).join(" | ")}\n#{@grid.slice(6, 3).join(" | ")}\n"
   end
 
   def available_squares
@@ -32,7 +32,7 @@ class Game
 
   def is_continue
     winner = Winner.new @grid
-    @is_playing = @grid.filter {|o| o.is_a? Integer}.size > 0 && !winner.is_win
+    @is_playing = @grid.filter {|o| o.is_a? Integer}.size > 0 && (!winner.is_player_win && !winner.is_computer_win)
   end
 
   def is_square_available choice
