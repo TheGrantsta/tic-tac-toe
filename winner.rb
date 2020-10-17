@@ -1,11 +1,9 @@
 class Winner
-  WINNING_COMBINATION = "X-X-X"
-
   def initialize combinations
     @combinations = combinations
   end
 
-  def is_win
+  def is_player_win
     [method(:is_across_match), method(:is_down_match), method(:is_diagonal_match)].each do |checker|
       if checker.call
         return true
@@ -43,6 +41,6 @@ class Winner
     end
 
     def is_match input
-      input == WINNING_COMBINATION
+      input == "X-X-X"
     end
 end

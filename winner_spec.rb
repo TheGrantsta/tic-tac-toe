@@ -10,7 +10,7 @@ RSpec.describe Winner do
 
       winner = Winner.new @grid
 
-      expect(winner.is_win).to be_truthy
+      expect(winner.is_player_win).to be_truthy
     end
 
     it "should return true for middle row" do
@@ -18,7 +18,7 @@ RSpec.describe Winner do
 
       winner = Winner.new @grid
 
-      expect(winner.is_win).to be_truthy
+      expect(winner.is_player_win).to be_truthy
     end
 
     it "should return true for bottom row" do
@@ -26,7 +26,7 @@ RSpec.describe Winner do
 
       winner = Winner.new @grid
 
-      expect(winner.is_win).to be_truthy
+      expect(winner.is_player_win).to be_truthy
     end
 
     it "should return true for first colum" do
@@ -34,7 +34,7 @@ RSpec.describe Winner do
 
       winner = Winner.new @grid
 
-      expect(winner.is_win).to be_truthy
+      expect(winner.is_player_win).to be_truthy
     end
 
     it "should return true for second colum" do
@@ -42,7 +42,7 @@ RSpec.describe Winner do
 
       winner = Winner.new @grid
 
-      expect(winner.is_win).to be_truthy
+      expect(winner.is_player_win).to be_truthy
     end
 
     it "should return true for third colum" do
@@ -50,7 +50,7 @@ RSpec.describe Winner do
 
       winner = Winner.new @grid
 
-      expect(winner.is_win).to be_truthy
+      expect(winner.is_player_win).to be_truthy
     end
 
     it "should return true for left to right diagonal" do
@@ -58,7 +58,7 @@ RSpec.describe Winner do
 
       winner = Winner.new @grid
 
-      expect(winner.is_win).to be_truthy
+      expect(winner.is_player_win).to be_truthy
     end
 
     it "should return true for right to left diagonal" do
@@ -66,7 +66,7 @@ RSpec.describe Winner do
 
       winner = Winner.new @grid
 
-      expect(winner.is_win).to be_truthy
+      expect(winner.is_player_win).to be_truthy
     end
   end
 
@@ -79,7 +79,7 @@ RSpec.describe Winner do
 
       winner = Winner.new @grid
 
-      expect(winner.is_win).to be_falsey
+      expect(winner.is_player_win).to be_falsey
     end
 
     it "should return false for middle row" do
@@ -87,7 +87,7 @@ RSpec.describe Winner do
 
       winner = Winner.new @grid
 
-      expect(winner.is_win).to be_falsey
+      expect(winner.is_player_win).to be_falsey
     end
 
     it "should return false for bottom row" do
@@ -95,7 +95,7 @@ RSpec.describe Winner do
 
       winner = Winner.new @grid
 
-      expect(winner.is_win).to be_falsey
+      expect(winner.is_player_win).to be_falsey
     end
 
     it "should return false for first colum" do
@@ -103,7 +103,7 @@ RSpec.describe Winner do
 
       winner = Winner.new @grid
 
-      expect(winner.is_win).to be_falsey
+      expect(winner.is_player_win).to be_falsey
     end
 
     it "should return false for second colum" do
@@ -111,7 +111,7 @@ RSpec.describe Winner do
 
       winner = Winner.new @grid
 
-      expect(winner.is_win).to be_falsey
+      expect(winner.is_player_win).to be_falsey
     end
 
     it "should return false for third colum" do
@@ -119,7 +119,7 @@ RSpec.describe Winner do
 
       winner = Winner.new @grid
 
-      expect(winner.is_win).to be_falsey
+      expect(winner.is_player_win).to be_falsey
     end
 
     it "should return false for left to right diagonal" do
@@ -127,7 +127,7 @@ RSpec.describe Winner do
 
       winner = Winner.new @grid
 
-      expect(winner.is_win).to be_falsey
+      expect(winner.is_player_win).to be_falsey
     end
 
     it "should return false for right to left diagonal" do
@@ -135,7 +135,7 @@ RSpec.describe Winner do
 
       winner = Winner.new @grid
 
-      expect(winner.is_win).to be_falsey
+      expect(winner.is_player_win).to be_falsey
     end
   end
 end
