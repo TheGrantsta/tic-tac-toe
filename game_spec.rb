@@ -23,6 +23,10 @@ RSpec.describe Game do
       expect(@game.grid[0]).to eq "X"
     end
 
+    it "should display winner" do
+      expect(@game.display_result).to eq "Draw"
+    end
+
     it "allow computer to select square by number" do
       @game.add_computer_choice 1
 
@@ -59,7 +63,9 @@ RSpec.describe Game do
       @game.add_player_choice 2
       @game.add_player_choice 3
 
-      expect(@game.display_grid).to eq "Grid: O, X, X, O, 5, 6, 7, 8, 9"
+      grid = %Q{ O | X | X \n O | 5 | 6 \n 7 | 8 | 9}
+
+      expect(@game.display_grid).to eq grid
     end
   end
 end

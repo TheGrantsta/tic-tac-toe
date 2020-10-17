@@ -13,5 +13,7 @@ while @game.is_playing do
   response = $stdin.gets.chomp
 
   @game.add_player_choice response.to_i
-
 end
+
+puts
+puts "Result: #{@game.display_result}"

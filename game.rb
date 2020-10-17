@@ -9,7 +9,7 @@ class Game
   end
 
   def display_grid
-    "\n#{@grid.slice(0, 3).join(" | ")}\n#{@grid.slice(3, 3).join(" | ")}\n#{@grid.slice(6, 3).join(" | ")}\n"
+    " #{@grid.slice(0, 3).join(" | ")} \n #{@grid.slice(3, 3).join(" | ")} \n #{@grid.slice(6, 3).join(" | ")}"
   end
 
   def available_squares
@@ -26,6 +26,17 @@ class Game
 
   def add_computer_choice computer_choice
     add_choice computer_choice, "O"
+  end
+
+  def display_result
+    winner = Winner.new @grid
+    if winner.is_player_win
+      "Player win!"
+    elsif winner.is_computer_win
+      "Computer win!"
+    else
+      "Draw"
+    end
   end
 
   private
