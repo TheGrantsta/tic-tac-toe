@@ -4,6 +4,9 @@ require_relative "strategy"
 class Game
   attr_reader :grid, :is_playing
 
+  PLAYER_MARK = "X"
+  COMPUTER_MARK = "O"
+
   def initialize starting_gird
     @grid = starting_gird
     @is_playing = true
@@ -25,7 +28,7 @@ class Game
   def add_player_choice player_choice
     winner = Winner.new @grid
     if is_square_available(player_choice) && !winner.is_game_over
-      add_choice player_choice, "X"
+      add_choice player_choice, PLAYER_MARK
       @moves.push "P #{player_choice}"
       add_computer_choice get_computer_choice if @is_playing
     end
@@ -35,7 +38,7 @@ class Game
   def add_computer_choice computer_choice
     winner = Winner.new @grid
     if (computer_choice.is_a? Integer) && !winner.is_game_over
-      add_choice computer_choice, "O"
+      add_choice computer_choice, COMPUTER_MARK
       @moves.push "C #{computer_choice}"
     end
   end
@@ -66,7 +69,7 @@ class Game
   end
 
   def is_square_available choice
-    @grid[choice - 1] != "X" && @grid[choice - 1] != "O"
+    @grid[choice - 1] != PLAYER_MARK && @grid[choice - 1] != COMPUTER_MARK
   end
 
   def add_choice choice, mark
