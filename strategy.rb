@@ -1,21 +1,25 @@
 class Strategy
   def self.move combinations
-    selection = 0
+    selection = computer_turn combinations
 
-    if is_first_turn combinations
-      if combinations.include?(5)
-        selection = 5
-      else
-        selection = 1
-      end
-    else
-      selection = get_winning_selection combinations
-    end
+    selection = get_winning_selection combinations unless selection > 0
 
     selection
   end
 
   private
+
+  def self.computer_turn combinations
+    if is_first_turn combinations
+      if combinations.include?(5)
+        5
+      else
+        1
+      end
+    else
+      0
+    end
+  end
 
   def self.is_first_turn combinations
     !combinations.include?("O")
