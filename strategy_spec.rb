@@ -174,4 +174,58 @@ RSpec.describe Strategy do
       expect(square).to eq 9
     end
   end
+
+  describe "computer should select square to prevent player winning - across" do
+    it "should select option top row" do
+      square = Strategy.move ["X", 2, "X", 4, 5, 6, "O", 8, 9]
+
+      expect(square).to eq 2
+    end
+
+    it "should select option middle row" do
+      square = Strategy.move ["X", 2, 3, "X", "X", 6, "O", 8, 9]
+
+      expect(square).to eq 6
+    end
+
+    it "should select option bottom row" do
+      square = Strategy.move ["O", 2, 3, 4, "O", 6, "X", "X", 9]
+
+      expect(square).to eq 9
+    end
+  end
+
+  describe "computer should select square to prevent player winning - down" do
+    it "should select option first column" do
+      square = Strategy.move ["X", 2, 3, "X", "O", 6, 7, 8, 9]
+
+      expect(square).to eq 7
+    end
+
+    it "should select option second column" do
+      square = Strategy.move [1, "X", 3, "O", "X", 6, 7, 8, 9]
+
+      expect(square).to eq 8
+    end
+
+    it "should select option third column" do
+      square = Strategy.move [1, 2, "X", 4, "O", 6, 7, 8, "X"]
+
+      expect(square).to eq 6
+    end
+  end
+
+  describe "computer should select square to prevent player winning - diagonal" do
+    it "should select option left to right" do
+      square = Strategy.move ["X", 2, 3, 4, "X", "O", 7, 8, 9]
+
+      expect(square).to eq 9
+    end
+
+    it "should select option right to left" do
+      square = Strategy.move [1, 2, "X", 4, "X", 6, 7, "O", 9]
+
+      expect(square).to eq 7
+    end
+  end
 end
