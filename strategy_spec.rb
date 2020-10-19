@@ -27,6 +27,18 @@ RSpec.describe Strategy do
 
       expect(square).to eq 0
     end
+
+    it "should not select winning option for the right to left diagonal" do
+      square = Strategy.move [1, 2, "O", 4, "X", 6, "O", 8, 9]
+
+      expect(square).to eq 0
+    end
+
+    it "should not select winning option for the left to right diagonal" do
+      square = Strategy.move ["O", 2, 3, 4, "X", 6, 7, 8, "O"]
+
+      expect(square).to eq 0
+    end
   end
 
   describe "computer should select square to win - top row" do
@@ -144,6 +156,20 @@ RSpec.describe Strategy do
 
     it "should select winning option for the top row" do
       square = Strategy.move [1, 2, "O", 4, 5, "O", 7, 8, 9]
+
+      expect(square).to eq 9
+    end
+  end
+
+  describe "computer should select square to win - diagonal" do
+    it "should select winning option for the right to left diagonal" do
+      square = Strategy.move [1, 2, "O", 4, 5, 6, "O", 8, 9]
+
+      expect(square).to eq 5
+    end
+
+    it "should select winning option for the left to right diagonal" do
+      square = Strategy.move ["O", 2, 3, 4, "O", 6, 7, 8, 9]
 
       expect(square).to eq 9
     end

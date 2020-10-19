@@ -28,6 +28,10 @@ class Strategy
       square = is_down_win combinations
     end
 
+    if square == 0
+      square = is_diagonal_win combinations
+    end
+
     square
   end
 
@@ -47,6 +51,19 @@ class Strategy
       options.push combinations[c]
       options.push combinations[c + 3]
       options.push combinations[c + 6]
+      if options.filter { |o| o == "O" }.count == 2 && options.filter { |o| o == "X" }.count == 0
+        return options.filter { |o| o.is_a? Integer }[0]
+      end
+    end
+    0
+  end
+
+  def self.is_diagonal_win combinations
+    [0,2].each do |c|
+      options = []
+      options.push combinations[8 - c]
+      options.push combinations[4]
+      options.push combinations[c]
       if options.filter { |o| o == "O" }.count == 2 && options.filter { |o| o == "X" }.count == 0
         return options.filter { |o| o.is_a? Integer }[0]
       end
