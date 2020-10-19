@@ -7,7 +7,9 @@ class Strategy
         1
       end
     else
-      2
+      if combinations.slice(0, 3).filter { |o| o.is_a? String }.count == 2
+        combinations.slice(0, 3).filter { |o| o.is_a? Integer }[0]
+      end
     end
   end
 end
