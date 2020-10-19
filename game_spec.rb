@@ -24,7 +24,7 @@ RSpec.describe Game do
     end
 
     it "should display winner" do
-      expect(@game.display_result).to eq "Draw"
+      expect(@game.display_result).to eq "Game drawn"
     end
 
     it "should display the moves taken" do
@@ -53,13 +53,16 @@ RSpec.describe Game do
     it "should return list of available squares - after two moves" do
       @game.add_player_choice 2
 
-      expect(@game.available_squares).to eq "Please select available square: 3, 4, 5, 6, 7, 8, 9"
+      expect(@game.available_squares).to eq "Please select available square: 1, 3, 4, 6, 7, 8, 9"
       expect(@game.is_playing).to be_truthy
     end
 
     it "should return empty list of available squares - after five moves" do
-      @game.add_player_choice 1; @game.add_player_choice 3;
-      @game.add_player_choice 5; @game.add_player_choice 7; @game.add_player_choice 9;
+      @game.add_player_choice 1
+      @game.add_player_choice 9
+      @game.add_player_choice 8
+      @game.add_player_choice 3
+      @game.add_player_choice 4
 
       expect(@game.available_squares).to eq "Please select available square: "
       expect(@game.is_playing).to be_falsey
@@ -69,7 +72,7 @@ RSpec.describe Game do
       @game.add_player_choice 2
       @game.add_player_choice 3
 
-      grid = %Q{ O | X | X \n O | 5 | 6 \n 7 | 8 | 9}
+      grid = %Q{ O | X | X \n 4 | O | 6 \n 7 | 8 | 9}
 
       expect(@game.display_grid).to eq grid
     end

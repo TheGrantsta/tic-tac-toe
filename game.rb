@@ -1,4 +1,5 @@
 require_relative "winner"
+require_relative "strategy"
 
 class Game
   attr_reader :grid, :is_playing
@@ -26,7 +27,7 @@ class Game
     if is_square_available(player_choice) && !winner.is_game_over
       add_choice player_choice, "X"
       @moves.push "P #{player_choice}"
-      add_computer_choice @grid.filter{|o| o.is_a? Integer}.first if @is_playing
+      add_computer_choice get_computer_choice if @is_playing
     end
     is_continue
   end
@@ -51,6 +52,13 @@ class Game
   end
 
   private
+  def get_computer_choice
+    square = Strategy.move @grid
+
+    square = @grid.filter{|o| o.is_a? Integer}.first unless square > 0
+
+    square
+  end
 
   def is_continue
     winner = Winner.new @grid
