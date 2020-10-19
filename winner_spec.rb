@@ -70,7 +70,7 @@ RSpec.describe Winner do
     end
   end
 
-  describe "not winning combinationss" do
+  describe "not winning combinations" do
     before do
       @grid = Array.new(9, "")
     end
@@ -158,6 +158,28 @@ RSpec.describe Winner do
       winner = Winner.new @grid
 
       expect(winner.is_computer_win).to be_falsey
+    end
+  end
+
+  describe "end of the game" do
+    before do
+      @grid = Array.new(9, "")
+    end
+
+    it "should is be game over if player has won" do
+      @grid[2] = "X"; @grid[4] = "X"; @grid[6] = "X"
+
+      winner = Winner.new @grid
+
+      expect(winner.is_game_over).to be_truthy
+    end
+
+    it "should is be game over if computer has won" do
+      @grid[2] = "O"; @grid[4] = "O"; @grid[6] = "O"
+
+      winner = Winner.new @grid
+
+      expect(winner.is_game_over).to be_truthy
     end
   end
 end
