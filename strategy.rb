@@ -33,7 +33,8 @@ class Strategy
 
   def self.is_across_win combinations
     [0,3,6].each do |c|
-      if combinations.slice(c, 3).filter { |o| o.is_a? String }.count == 2
+      options = combinations.slice(c, 3)
+      if options.filter { |o| o == "O" }.count == 2 && options.filter { |o| o == "X" }.count == 0
         return combinations.slice(c, 3).filter { |o| o.is_a? Integer }[0]
       end
     end
@@ -46,7 +47,7 @@ class Strategy
       options.push combinations[c]
       options.push combinations[c + 3]
       options.push combinations[c + 6]
-      if options.filter { |o| o.is_a? String }.count == 2
+      if options.filter { |o| o == "O" }.count == 2 && options.filter { |o| o == "X" }.count == 0
         return options.filter { |o| o.is_a? Integer }[0]
       end
     end
