@@ -35,4 +35,24 @@ RSpec.describe Strategy do
     end
   end
 
+  describe "computer should select square to win - middle row" do
+    it "should select winning option for the top row" do
+      square = Strategy.move [1, 2, 3, 4, "O", "O"]
+
+      expect(square).to eq 4
+    end
+
+    it "should select winning option for the top row" do
+      square = Strategy.move [1, 2, 3, "O", 5, "O"]
+
+      expect(square).to eq 5
+    end
+
+    it "should select winning option for the top row" do
+      square = Strategy.move [1, 2, 3, "O", "0", 6]
+
+      expect(square).to eq 6
+    end
+  end
+
 end
