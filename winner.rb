@@ -11,25 +11,23 @@ class Winner
   end
 
   def is_player_win
-    @methods.each do |checker|
-      if checker.call
-        return true
-      end
-    end
-    false
+    is_winning_combination "X-X-X"
   end
 
   def is_computer_win
-    @winning_combination = "O-O-O"
-    @methods.each do |checker|
-      if checker.call
-        return true
-      end
-    end
-    false
+    is_winning_combination "O-O-O"
   end
 
   private
+    def is_winning_combination combination
+      @winning_combination = combination
+      @methods.each do |checker|
+        if checker.call
+          return true
+        end
+      end
+      false
+    end
     def is_across_match
       [0,3,6].each do |c|
         if is_match(@combinations.slice(c, 3).join("-"))

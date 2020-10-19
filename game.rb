@@ -62,6 +62,6 @@ class Game
   end
 
   def add_choice choice, mark
-    @grid[choice - 1] = mark unless @grid[choice - 1] == "O"
+    @grid[choice - 1] = mark
   end
 end
