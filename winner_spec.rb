@@ -181,5 +181,13 @@ RSpec.describe Winner do
 
       expect(winner.is_game_over).to be_truthy
     end
+
+    it "should not be game over if neither player or computer has won" do
+      @grid[2] = "O"; @grid[4] = "X"; @grid[6] = "O"
+
+      winner = Winner.new @grid
+
+      expect(winner.is_game_over).to be_falsey
+    end
   end
 end

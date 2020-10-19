@@ -42,11 +42,11 @@ class Game
   def display_result
     winner = Winner.new @grid
     if winner.is_player_win
-      "Player win!"
+      "Player won!"
     elsif winner.is_computer_win
-      "Computer win!"
+      "Computer won!"
     else
-      "Draw"
+      "Game drawn"
     end
   end
 
@@ -54,7 +54,7 @@ class Game
 
   def is_continue
     winner = Winner.new @grid
-    @is_playing = @grid.filter {|o| o.is_a? Integer}.size > 0 && (!winner.is_player_win && !winner.is_computer_win)
+    @is_playing = @grid.filter {|o| o.is_a? Integer}.size > 0 &&  !winner.is_game_over
   end
 
   def is_square_available choice
