@@ -6,10 +6,15 @@ class Game
   def initialize starting_gird
     @grid = starting_gird
     @is_playing = true
+    @moves = []
   end
 
   def display_grid
     " #{@grid.slice(0, 3).join(" | ")} \n #{@grid.slice(3, 3).join(" | ")} \n #{@grid.slice(6, 3).join(" | ")}"
+  end
+
+  def display_moves
+    "Moves: #{@moves.join("; ")}"
   end
 
   def available_squares
@@ -19,6 +24,7 @@ class Game
   def add_player_choice player_choice
     if is_square_available player_choice
       add_choice player_choice, "X"
+      @moves.push "P #{player_choice}"
       add_computer_choice @grid.filter{|o| o.is_a? Integer}.first if @is_playing
     end
     is_continue
@@ -27,6 +33,7 @@ class Game
   def add_computer_choice computer_choice
     if computer_choice.is_a? Integer
       add_choice computer_choice, "O"
+      @moves.push "C #{computer_choice}"
     end
   end
 

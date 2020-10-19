@@ -7,6 +7,8 @@ while @game.is_playing do
   puts
   puts @game.display_grid
   puts
+  puts @game.display_moves
+  puts
   puts @game.available_squares
   puts
   puts "*************************"
@@ -18,6 +20,8 @@ end
 
 puts
 puts @game.display_grid
+puts
+puts @game.display_moves
 puts
 puts "Result: #{@game.display_result}"
 puts

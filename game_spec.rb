@@ -27,6 +27,12 @@ RSpec.describe Game do
       expect(@game.display_result).to eq "Draw"
     end
 
+    it "should display the moves taken" do
+      @game.add_player_choice 5
+
+      expect(@game.display_moves).to eq "Moves: P 5; C 1"
+    end
+
     it "allow computer to select square by number" do
       @game.add_computer_choice 1
 
