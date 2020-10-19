@@ -22,7 +22,8 @@ class Game
   end
 
   def add_player_choice player_choice
-    if is_square_available player_choice
+    winner = Winner.new @grid
+    if is_square_available(player_choice) && !winner.is_game_over
       add_choice player_choice, "X"
       @moves.push "P #{player_choice}"
       add_computer_choice @grid.filter{|o| o.is_a? Integer}.first if @is_playing
@@ -31,7 +32,8 @@ class Game
   end
 
   def add_computer_choice computer_choice
-    if computer_choice.is_a? Integer
+    winner = Winner.new @grid
+    if (computer_choice.is_a? Integer) && !winner.is_game_over
       add_choice computer_choice, "O"
       @moves.push "C #{computer_choice}"
     end

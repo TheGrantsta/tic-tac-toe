@@ -6,6 +6,10 @@ class Winner
     @methods = [method(:is_across_match), method(:is_down_match), method(:is_diagonal_match)]
   end
 
+  def is_game_over
+    is_player_win || is_computer_win
+  end
+
   def is_player_win
     @methods.each do |checker|
       if checker.call
