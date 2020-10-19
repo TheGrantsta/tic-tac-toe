@@ -1,15 +1,26 @@
 require_relative "strategy"
 
 RSpec.describe Strategy do
-  it "computer should select middle square of grid if available" do
-    square = Strategy.move ["X", 2, 3, 4, 5, 6, 7, 8, 9]
+  describe "first computer selection" do
+    it "computer should select middle square of grid if available" do
+      square = Strategy.move ["X", 2, 3, 4, 5, 6, 7, 8, 9]
 
-    expect(square).to eq 5
+      expect(square).to eq 5
+    end
+
+    it "computer should select first square of grid if middle square is taken" do
+      square = Strategy.move [1, 2, 3, 4, "X", 6, 7, 8, 9]
+
+      expect(square).to eq 1
+    end
   end
 
-  it "computer should select first square of grid if middle square is taken" do
-    square = Strategy.move [1, 2, 3, 4, "X", 6, 7, 8, 9]
+  describe "computer should select square to win" do
+    it "should select winning option for the top row" do
+      square = Strategy.move ["O", 2, "O"]
 
-    expect(square).to eq 1
+      expect(square).to eq 2
+    end
   end
+
 end

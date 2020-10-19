@@ -2,7 +2,7 @@ class Winner
 
   def initialize combinations
     @combinations = combinations
-    @winning_combination = "X-X-X"
+    @winning_combination = ""
     @methods = [method(:is_across_match), method(:is_down_match), method(:is_diagonal_match)]
   end
 
@@ -28,6 +28,7 @@ class Winner
       end
       false
     end
+
     def is_across_match
       [0,3,6].each do |c|
         if is_match(@combinations.slice(c, 3).join("-"))
