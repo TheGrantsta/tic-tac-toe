@@ -10,6 +10,8 @@ class Strategy
 
     selection = get_blocking_selection combinations unless selection > NO_SELECTION
 
+    selection = get_square_to_make_player_block combinations unless selection > NO_SELECTION
+
     selection
   end
 
@@ -108,6 +110,31 @@ class Strategy
         return options.filter { |o| o.is_a? Integer }[0]
       end
     end
+    NO_SELECTION
+  end
+
+  def self.get_square_to_make_player_block combinations
+    available_squares = combinations.filter { |o| o.is_a? Integer }
+    2-5-8
+    4-5-6
+    1-5-9
+    3-5-6
+
+    if available_squares.count == 6
+      #computer's second turn
+      #2, 4, 6 & 8 with 5 to form an across or down pair with an empty third square
+      if combinations.include?(2) && combinations.include?(8)
+        return 2
+      else
+        return 4
+      end
+    else
+      #computer's third turn
+      if available_squares.include?(3)
+        return 3
+      end
+    end
+
     NO_SELECTION
   end
 end
