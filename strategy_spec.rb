@@ -35,7 +35,7 @@ RSpec.describe Strategy do
     it "player selects 5 then 9 computer should select" do
       square = Strategy.move ["O", 2, 3, 4, "X", 6, 7, 8, "X"]
 
-      #expect(square).to eq 3
+      expect(square).to eq 3
     end
   end
 

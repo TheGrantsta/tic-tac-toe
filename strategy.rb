@@ -130,6 +130,12 @@ class Strategy
       end
     end
 
+    if combinations.filter { |o| o.is_a? Integer }.count == 6
+      if combinations[4] == PLAYER_MARK && combinations[8] == PLAYER_MARK
+        return 3
+      end
+    end
+
     NO_SELECTION
   end
 
