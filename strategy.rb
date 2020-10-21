@@ -24,7 +24,7 @@ class Strategy
       if combinations.include?(5)
         5
       else
-        1
+        2
       end
     else
       NO_SELECTION
@@ -146,8 +146,6 @@ class Strategy
       blocks[b].each do |s|
         squares.push combinations[s - 1]
       end
-
-puts squares.join("-")
 
       if squares.filter { |o| o == PLAYER_MARK }.count == 2 && squares.filter { |o| o.is_a? Integer }.count == 1
         return squares.filter { |o| o.is_a? Integer }.first
