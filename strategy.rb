@@ -10,7 +10,7 @@ class Strategy
 
     selection = get_blocking_selection combinations unless selection > NO_SELECTION
 
-    selection = get_square_across_or_top_to_make_player_block combinations unless selection > NO_SELECTION
+    selection = get_square_to_make_player_block combinations unless selection > NO_SELECTION
 
     selection = get_square_to_complete_block combinations unless selection > NO_SELECTION
 
@@ -115,7 +115,7 @@ class Strategy
     NO_SELECTION
   end
 
-  def self.get_square_across_or_top_to_make_player_block combinations
+  def self.get_square_to_make_player_block combinations
     rows = {"2" => [2, 5, 8], "4" => [4, 5, 6] }
 
     rows.keys.each do |v|
