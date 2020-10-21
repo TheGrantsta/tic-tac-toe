@@ -20,6 +20,7 @@ puts "Result - totals"
 puts "         Player won!   #{results.filter {|r| r.include?("Player won!") }.count}"
 puts "         Computer won! #{results.filter {|r| r.include?("Computer won!") }.count}"
 puts "         Drawn!        #{results.filter {|r| r.include?("Game drawn") }.count}"
+puts
 
 results.each do |r|
   if r.include?("Player won!")
