@@ -33,11 +33,11 @@ RSpec.describe Strategy do
     end
   end
 
-  describe "force player to select square that stops computer winning - third turn" do
-    it "player selects 8 then 1 then 6 computer should select" do
+  describe "select square that creates a completed square" do
+    it "player selects 1 then 6 then 8 computer should select" do
       square = Strategy.move ["X", "O", 3, 4, "O", "X", 7, "X", 9]
 
-      #expect(square).to eq 7 #should be 9
+      expect(square).to eq 9
     end
   end
 

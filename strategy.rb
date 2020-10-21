@@ -12,6 +12,8 @@ class Strategy
 
     selection = get_square_across_or_top_to_make_player_block combinations unless selection > NO_SELECTION
 
+    selection = get_square_to_complete_block combinations unless selection > NO_SELECTION
+
     selection
   end
 
@@ -116,7 +118,7 @@ class Strategy
   def self.get_square_across_or_top_to_make_player_block combinations
     rows = {"2" => [2, 5, 8], "4" => [4, 5, 6] }
 
-    ["2", "4"].each do |v|
+    rows.keys.each do |v|
       squares = "#{combinations[rows[v][0] - 1]}-#{combinations[rows[v][1] - 1]}-#{combinations[rows[v][2] - 1]}"
 
       if !squares.include?(PLAYER_MARK)
@@ -125,6 +127,30 @@ class Strategy
             return combinations[s - 1]
           end
         end
+      end
+    end
+
+    NO_SELECTION
+  end
+
+  def self.get_square_to_complete_block combinations
+    blocks = {
+      "top-left" => [1, 2, 4, 5],
+      "top-right" => [2, 3, 5, 6],
+      "bottom-left" => [4, 5, 7, 8],
+      "bottom-right" => [5, 6, 8, 9]
+    }
+
+    blocks.keys.each do |b|
+      squares = []
+      blocks[b].each do |s|
+        squares.push combinations[s - 1]
+      end
+
+puts squares.join("-")
+
+      if squares.filter { |o| o == PLAYER_MARK }.count == 2 && squares.filter { |o| o.is_a? Integer }.count == 1
+        return squares.filter { |o| o.is_a? Integer }.first
       end
     end
 
