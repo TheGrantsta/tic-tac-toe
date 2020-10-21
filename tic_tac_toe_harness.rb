@@ -1,7 +1,11 @@
 require_relative "game"
 
-results = []
-GAMES = 500000
+player_wins = 0
+computer_wins = 0
+draws = 0
+player_win_moves = []
+
+GAMES = 1000000
 
 puts "Started: #{Time.now.strftime("%d/%m/%Y %H:%M")}"
 
@@ -15,19 +19,27 @@ GAMES.times do |n|
     @game.add_player_choice player_choice
   end
 
-  results.push "Game #{n + 1} - #{@game.display_result}: #{@game.display_moves}"
+  if @game.display_result.include?("Player won!")
+    player_wins += 1
+    player_win_moves.push "Game #{n + 1} - #{@game.display_result}: #{@game.display_moves}"
+  elsif @game.display_result.include?("Computer won!")
+    computer_wins += 1
+  else
+    draws += 1
+  end
 end
 
-puts "Finished: #{Time.now.strftime("%d/%m/%Y %H:%M")}"
 puts
-puts "Result - totals"
-puts "         Player won!   #{results.filter {|r| r.include?("Player won!") }.count}"
-puts "         Computer won! #{results.filter {|r| r.include?("Computer won!") }.count}"
-puts "         Drawn!        #{results.filter {|r| r.include?("Game drawn") }.count}"
+puts "Result - Totals"
+puts "         Player won!   #{player_wins}"
+puts "         Computer won! #{computer_wins}"
+puts "         Drawn!        #{draws}"
 puts
 
-player_wins = results.filter { |r| r.include?("Player won!") }
-
-player_wins.each do |r|
+player_win_moves.each do |r|
   puts r
 end
+
+puts
+puts "Finished: #{Time.now.strftime("%d/%m/%Y %H:%M")}"
+puts
