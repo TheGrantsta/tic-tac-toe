@@ -31,10 +31,14 @@ RSpec.describe Strategy do
 
       expect(square).to eq 2
     end
+
+    it "player selects 5 then 9 computer should select" do
+      square = Strategy.move ["O", 2, 3, 4, "X", 6, 7, 8, "X"]
+
+      #expect(square).to eq 3
+    end
   end
 
-  #Game 33 - Player won!: Moves: P 5; C 2; P 3; C 7; P 6; C 4; P 9
-  #Game 68 - Player won!: Moves: P 5; C 2; P 4; C 6; P 7; C 1; P 3
   describe "select square that creates a completed square" do
     it "player selects 1 then 6 then 8 computer should select" do
       square = Strategy.move ["X", "O", 3, 4, "O", "X", 7, "X", 9]
@@ -53,7 +57,7 @@ RSpec.describe Strategy do
     it "computer should select first square of grid if middle square is taken" do
       square = Strategy.move [1, 2, 3, 4, "X", 6, 7, 8, 9]
 
-      expect(square).to eq 2
+      expect(square).to eq 1
     end
   end
 

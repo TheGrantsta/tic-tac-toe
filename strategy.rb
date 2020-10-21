@@ -24,7 +24,7 @@ class Strategy
       if combinations.include?(5)
         5
       else
-        2
+        1
       end
     else
       NO_SELECTION
