@@ -3,25 +3,31 @@ class Strategy
   PLAYER_MARK = "X"
   COMPUTER_MARK = "O"
 
-  def self.move combinations
-    selection = computer_turn combinations
+  game_moves = []
 
-    selection = get_winning_selection combinations unless selection > NO_SELECTION
+  def initialize moves
+    @game_moves = moves
+  end
 
-    selection = get_blocking_selection combinations unless selection > NO_SELECTION
+  def move
+    selection = computer_turn
 
-    selection = get_square_to_make_player_block combinations unless selection > NO_SELECTION
+    selection = get_winning_selection unless selection > NO_SELECTION
 
-    selection = get_square_to_complete_block combinations unless selection > NO_SELECTION
+    selection = get_blocking_selection unless selection > NO_SELECTION
+
+    selection = get_square_to_make_player_block unless selection > NO_SELECTION
+
+    selection = get_square_to_complete_block unless selection > NO_SELECTION
 
     selection
   end
 
   private
 
-  def self.computer_turn combinations
-    if is_first_turn combinations
-      if combinations.include?(5)
+  def computer_turn
+    if is_first_turn
+      if @game_moves.include?(5)
         5
       else
         1
@@ -31,62 +37,62 @@ class Strategy
     end
   end
 
-  def self.is_first_turn combinations
-    !combinations.include?("O")
+  def is_first_turn
+    !@game_moves.include?("O")
   end
 
-  def self.get_winning_selection combinations
-    square = is_across_win combinations, COMPUTER_MARK, PLAYER_MARK
+  def get_winning_selection
+    square = is_across_win COMPUTER_MARK, PLAYER_MARK
 
-    square = is_down_win combinations, COMPUTER_MARK, PLAYER_MARK unless square > NO_SELECTION
+    square = is_down_win COMPUTER_MARK, PLAYER_MARK unless square > NO_SELECTION
 
-    square = is_diagonal_win combinations, COMPUTER_MARK, PLAYER_MARK unless square > NO_SELECTION
+    square = is_diagonal_win COMPUTER_MARK, PLAYER_MARK unless square > NO_SELECTION
 
     square
   end
 
-  def self.get_blocking_selection combinations
-    square = is_across_block combinations, PLAYER_MARK, COMPUTER_MARK
+  def get_blocking_selection
+    square = is_across_block PLAYER_MARK, COMPUTER_MARK
 
-    square = is_down_block combinations, PLAYER_MARK, COMPUTER_MARK unless square > NO_SELECTION
+    square = is_down_block PLAYER_MARK, COMPUTER_MARK unless square > NO_SELECTION
 
-    square = is_diagonal_block combinations, PLAYER_MARK, COMPUTER_MARK unless square > NO_SELECTION
+    square = is_diagonal_block PLAYER_MARK, COMPUTER_MARK unless square > NO_SELECTION
 
     square
   end
 
-  def self.is_across_win combinations, twoOf, noneOf
-    is_across combinations, twoOf, noneOf
+  def is_across_win twoOf, noneOf
+    is_across twoOf, noneOf
   end
 
-  def self.is_across_block combinations, twoOf, noneOf
-    is_across combinations, twoOf, noneOf
+  def is_across_block twoOf, noneOf
+    is_across twoOf, noneOf
   end
 
-  def self.is_across combinations, twoOf, noneOf
+  def is_across twoOf, noneOf
     [0,3,6].each do |c|
-      options = combinations.slice(c, 3)
+      options = @game_moves.slice(c, 3)
       if options.filter { |o| o == twoOf }.count == 2 && options.filter { |o| o == noneOf }.count == 0
-        return combinations.slice(c, 3).filter { |o| o.is_a? Integer }[0]
+        return @game_moves.slice(c, 3).filter { |o| o.is_a? Integer }[0]
       end
     end
     NO_SELECTION
   end
 
-  def self.is_down_win combinations, twoOf, noneOf
-    is_down combinations, twoOf, noneOf
+  def is_down_win twoOf, noneOf
+    is_down twoOf, noneOf
   end
 
-  def self.is_down_block combinations, twoOf, noneOf
-    is_down combinations, twoOf, noneOf
+  def is_down_block twoOf, noneOf
+    is_down twoOf, noneOf
   end
 
-  def self.is_down combinations, twoOf, noneOf
+  def is_down twoOf, noneOf
     [0,1,2].each do |c|
       options = []
-      options.push combinations[c]
-      options.push combinations[c + 3]
-      options.push combinations[c + 6]
+      options.push @game_moves[c]
+      options.push @game_moves[c + 3]
+      options.push @game_moves[c + 6]
       if options.filter { |o| o == twoOf }.count == 2 && options.filter { |o| o == noneOf }.count == 0
         return options.filter { |o| o.is_a? Integer }[0]
       end
@@ -94,20 +100,20 @@ class Strategy
     NO_SELECTION
   end
 
-  def self.is_diagonal_win combinations, twoOf, noneOf
-    is_diagonal combinations, twoOf, noneOf
+  def is_diagonal_win twoOf, noneOf
+    is_diagonal twoOf, noneOf
   end
 
-  def self.is_diagonal_block combinations, twoOf, noneOf
-    is_diagonal combinations, twoOf, noneOf
+  def is_diagonal_block twoOf, noneOf
+    is_diagonal twoOf, noneOf
   end
 
-  def self.is_diagonal combinations, twoOf, noneOf
+  def is_diagonal twoOf, noneOf
     [0,2].each do |c|
       options = []
-      options.push combinations[8 - c]
-      options.push combinations[4]
-      options.push combinations[c]
+      options.push @game_moves[8 - c]
+      options.push @game_moves[4]
+      options.push @game_moves[c]
       if options.filter { |o| o == twoOf }.count == 2 && options.filter { |o| o == noneOf }.count == 0
         return options.filter { |o| o.is_a? Integer }[0]
       end
@@ -115,23 +121,23 @@ class Strategy
     NO_SELECTION
   end
 
-  def self.get_square_to_make_player_block combinations
+  def get_square_to_make_player_block
     rows = {"2" => [2, 5, 8], "4" => [4, 5, 6] }
 
     rows.keys.each do |v|
-      squares = "#{combinations[rows[v][0] - 1]}-#{combinations[rows[v][1] - 1]}-#{combinations[rows[v][2] - 1]}"
+      squares = "#{@game_moves[rows[v][0] - 1]}-#{@game_moves[rows[v][1] - 1]}-#{@game_moves[rows[v][2] - 1]}"
 
       if !squares.include?(PLAYER_MARK)
         rows[v].each do |s|
-          if combinations[s - 1] != COMPUTER_MARK
-            return combinations[s - 1]
+          if @game_moves[s - 1] != COMPUTER_MARK
+            return @game_moves[s - 1]
           end
         end
       end
     end
 
-    if combinations.filter { |o| o.is_a? Integer }.count == 6
-      if combinations[4] == PLAYER_MARK && combinations[8] == PLAYER_MARK
+    if @game_moves.filter { |o| o.is_a? Integer }.count == 6
+      if @game_moves[4] == PLAYER_MARK && @game_moves[8] == PLAYER_MARK
         return 3
       end
     end
@@ -139,7 +145,7 @@ class Strategy
     NO_SELECTION
   end
 
-  def self.get_square_to_complete_block combinations
+  def get_square_to_complete_block
     blocks = {
       "top-left" => [1, 2, 4, 5],
       "top-right" => [2, 3, 5, 6],
@@ -150,7 +156,7 @@ class Strategy
     blocks.keys.each do |b|
       squares = []
       blocks[b].each do |s|
-        squares.push combinations[s - 1]
+        squares.push @game_moves[s - 1]
       end
 
       if squares.filter { |o| o == PLAYER_MARK }.count == 2 && squares.filter { |o| o.is_a? Integer }.count == 1

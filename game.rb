@@ -56,11 +56,13 @@ class Game
 
   private
   def get_computer_choice
-    square = Strategy.move @grid
+    strategy = Strategy.new @grid
 
-    square = @grid.filter{|o| o.is_a? Integer}.first unless square > 0
+    next_move = strategy.move
 
-    square
+    next_move = @grid.filter{|o| o.is_a? Integer}.first unless next_move > 0
+
+    next_move
   end
 
   def is_continue
