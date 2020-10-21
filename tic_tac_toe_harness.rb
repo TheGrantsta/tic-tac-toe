@@ -5,12 +5,11 @@ computer_wins = 0
 draws = 0
 player_win_moves = []
 
-GAMES = 1000000
+GAMES = 10000000
 
-puts "Started: #{Time.now.strftime("%d/%m/%Y %H:%M")}"
+puts "Started: #{Time.now.strftime("%d/%m/%Y %H:%M:%S")}"
 
 GAMES.times do |n|
-
   @game = Game.new [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
   while @game.is_playing do
@@ -41,5 +40,5 @@ player_win_moves.each do |r|
 end
 
 puts
-puts "Finished: #{Time.now.strftime("%d/%m/%Y %H:%M")}"
+puts "Finished: #{Time.now.strftime("%d/%m/%Y %H:%M:%S")}"
 puts
