@@ -1,7 +1,9 @@
 require_relative "game"
 
 results = []
-GAMES = 100000
+GAMES = 500000
+
+puts "Started: #{Time.now.strftime("%d/%m/%Y %H:%M")}"
 
 GAMES.times do |n|
 
@@ -16,14 +18,16 @@ GAMES.times do |n|
   results.push "Game #{n + 1} - #{@game.display_result}: #{@game.display_moves}"
 end
 
+puts "Finished: #{Time.now.strftime("%d/%m/%Y %H:%M")}"
+puts
 puts "Result - totals"
 puts "         Player won!   #{results.filter {|r| r.include?("Player won!") }.count}"
 puts "         Computer won! #{results.filter {|r| r.include?("Computer won!") }.count}"
 puts "         Drawn!        #{results.filter {|r| r.include?("Game drawn") }.count}"
 puts
 
-results.each do |r|
-  if r.include?("Player won!")
-    puts r
-  end
+player_wins = results.filter { |r| r.include?("Player won!") }
+
+player_wins.each do |r|
+  puts r
 end
